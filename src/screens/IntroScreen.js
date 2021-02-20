@@ -33,7 +33,7 @@ const IntroScreen = () => {
         },
         {
             key:4,
-            title:'เครื่องมือที่ใช้คลังสินค้า',
+            title:'เครื่องมือที่ใช้ในคลังสินค้า',
             text:"อุปกรณ์ที่ต้องใช้ในคลังสินค้าแต่ละประเภท",
             image:require('../../assets/images/wholesale.png'),
             backgroundColor:"#f58023"
