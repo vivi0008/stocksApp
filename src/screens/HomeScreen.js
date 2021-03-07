@@ -4,76 +4,34 @@ import {
     Text,
     SafeAreaView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Divider } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import styles from "../Style";
+import typeData from "../data/typeData.json";
+import thaiData from "../data/thaiData.json";
+import safetyData from "../data/safetyData.json";
+import keepTool from "../data/keepTool.json";
 
 const HomeScreen = ({ navigation }) => {
-    const typeData = [
-        {
-            id: 1,
-            title: "1. กลุ่มคลังสินค้าสาธารณะ",
-            detail:
-                "ธุรกิจของเจ้าของ ที่จัดให้มีความสะดวก – ง่ายดายต่างๆ ในการเก็บรักษาสินค้า รวมทั้งให้บริการต่างๆ อันเกี่ยวข้องกับสินค้านั้น"
-        },
-        {
-            id: 2,
-            title: "2. คลังสินค้าสาธารณะของบริษัทเอกชน",
-            detail:
-                "ธุรกิจขนาดใหญ่ ของภาคเอกชนซึ่งก่อตั้งขึ้นในรูปของบริษัทจำกัด หรือ กิจการคลังสินค้าสาธารณะที่บริษัทเอกชนกำลังดำเนินงานอยู่"
-        },
-        {
-            id: 3,
-            title: "3. คลังสินค้าสาธารณะของรัฐบาล",
-            detail:
-                "รัฐบาลในภาคส่วนต่างๆ ที่ประกอบธุรกิจทางการค้าเพื่อหารายได้เข้ารัฐ เป็นการจัดตั้งขึ้นในรูปแบบของรัฐวิสาหกิจ หรือรัฐพาณิชย์ในรูปแบบอื่นๆ โดยมีจุดมุ่งหมาย รวมทั้งนโยบายหลักในการประกอบกิจการต่างๆ เพื่อตอบสนองต่อนโยบายของรัฐบาลในด้านต่างๆ ให้เป็นไปอย่างราบรื่น สำหรับคลังสินค้าสาธารณะของรัฐบาล จัดตั้งขึ้นอย่างเป็นระบบในรูปแบบของรัฐวิสาหกิจ โดยมีจุดประสงค์เพื่อตอบสนองนโยบายของรัฐบาลทางด้านเศรษฐกิจ เช่น อุตสาหกรรมห้องเย็น เป็นต้น"
-        },
-        {
-            id: 4,
-            title: "4. คลังสินค้าสาธารณะของสหกรณ์",
-            detail:
-                "สหกรณ์คือ องค์การเอกชน ซึ่งอยู่ภายใต้การควบคุม รวมทั้งการสนับสนุนของรัฐบาล มีการจัดตั้งขึ้นตามหลักกฎหมายสหกรณ์ ซึ่งเป็นการรวมตัวกันของกลุ่มอาชีพ หรือกลุ่มผลประโยชน์ ซึ่งมีเป้าหมายในการทำกิจการต่างๆ ร่วมกัน ต่างฝ่ายต่างช่วยเหลือสนับสนุนซึ่งกันและกันทางด้านเศรษฐกิจ เช่น สหกรณ์การเกษตร หรือสหกรณ์การประมง เป็นต้น"
-        }
-    ];
-
-    const thaiData = [
-        {
-            id: 1,
-            title: "1. คลังสินค้าสาธารณะ (Public warehouse)",
-            detail: [
-                {
-                    id: 1,
-                    title:
-                        "1.1 คลังสินค้าสำหรับสินค้าทั่วไป (General merchandise warehouse)"
-                },
-                {
-                    id: 2,
-                    title: "1.2 คลังสินค้าพิเศษ (Special commodity warehouse)"
-                },
-                {
-                    id: 3,
-                    title: "1.3 คลังสินค้าทัณฑ์บน (Bonded warehouse)"
-                }
-            ]
-        },
-        {
-            id: 2,
-            title: "2. คลังสินค้าเอกชน (Private warehouse)",
-            detail: []
-        },
-        {
-            id: 3,
-            title: "3. คลังสินค้าเพื่อกิจกรรมพิเศษ (Special warehouse)",
-            detail: []
-        }
-    ];
 
     const goTypeDetail = (value) => {
         navigation.navigate("Type", { data: value });
     };
+
+    const goSafetyDetail = (value) => {
+        navigation.navigate("Safety", { data: value });
+    };
+
+    const goKeepTool = (value) =>{
+        navigation.navigate("Keep", {data: value});
+    };
+
+    const goListName = () =>{
+        navigation.navigate("List")
+    }
 
     return (
         <LinearGradient
@@ -111,13 +69,13 @@ const HomeScreen = ({ navigation }) => {
                         <Divider
                             style={{
                                 backgroundColor: "gray",
-                                position: "relative"
+                                position: "relative",
                             }}
                         />
                         <Text
                             style={[
                                 styles.contentHeader,
-                                { fontSize: 24, paddingTop: 20 }
+                                { fontSize: 24, paddingTop: 20 },
                             ]}
                         >
                             ความเป็นมาของคลังสินค้า
@@ -147,13 +105,13 @@ const HomeScreen = ({ navigation }) => {
                         <Divider
                             style={{
                                 backgroundColor: "gray",
-                                position: "relative"
+                                position: "relative",
                             }}
                         />
                         <Text
                             style={[
                                 styles.contentHeader,
-                                { fontSize: 24, paddingTop: 20 }
+                                { fontSize: 24, paddingTop: 20 },
                             ]}
                         >
                             ประเภทของคลังสินค้ามีอะไรบ้าง ?
@@ -175,8 +133,8 @@ const HomeScreen = ({ navigation }) => {
                                             styles.textContent,
                                             {
                                                 textDecorationLine: "underline",
-                                                color: "blue"
-                                            }
+                                                color: "blue",
+                                            },
                                         ]}
                                     >
                                         {e.title}
@@ -187,13 +145,13 @@ const HomeScreen = ({ navigation }) => {
                         <Divider
                             style={{
                                 backgroundColor: "gray",
-                                position: "relative"
+                                position: "relative",
                             }}
                         />
                         <Text
                             style={[
                                 styles.contentHeader,
-                                { fontSize: 24, paddingTop: 20 }
+                                { fontSize: 24, paddingTop: 20 },
                             ]}
                         >
                             ประเภทของคลังสินค้าใน{"\n"}ประเทศไทย
@@ -201,14 +159,31 @@ const HomeScreen = ({ navigation }) => {
                         <Text style={styles.textContent}>
                             ประเภทของคลังสินค้า ในประเทศไทยมี 3 ประเภทได้แก่ ...
                         </Text>
-                        {thaiData.map((e) => {
+                        {thaiData.map((e, index) => {
                             return (
-                                <View>
-                                    <Text style={[styles.textContent, {fontSize:18, fontWeight:'bold', textDecorationLine:'underline'}]}>{e.title}</Text>
-                                    {e.detail.map((g) =>{
-                                        return(
-                                            <Text style={styles.textContent}>{"\t"}{g.title}</Text>
-                                        )
+                                <View key={index}>
+                                    <Text
+                                        style={[
+                                            styles.textContent,
+                                            {
+                                                fontSize: 18,
+                                                fontWeight: "bold",
+                                                textDecorationLine: "underline",
+                                            },
+                                        ]}
+                                    >
+                                        {e.title}
+                                    </Text>
+                                    {e.detail.map((g, index) => {
+                                        return (
+                                            <Text
+                                                style={styles.textContent}
+                                                key={index}
+                                            >
+                                                {"\t"}
+                                                {g.title}
+                                            </Text>
+                                        );
                                     })}
                                 </View>
                             );
@@ -216,7 +191,106 @@ const HomeScreen = ({ navigation }) => {
                         <Divider
                             style={{
                                 backgroundColor: "gray",
-                                position: "relative"
+                                position: "relative",
+                            }}
+                        />
+                        <Text
+                            style={[
+                                styles.contentHeader,
+                                { fontSize: 24, paddingTop: 20 },
+                            ]}
+                        >
+                            อุปกรณ์เซฟตี้
+                        </Text>
+                        {safetyData.map((e, index) => {
+                            return (
+                                <TouchableOpacity
+                                    key={index}
+                                    onPress={() => goSafetyDetail(e)}
+                                >
+                                    <Text
+                                        style={[
+                                            styles.textContent,
+                                            {
+                                                marginVertical: 10,
+                                                textDecorationLine: "underline",
+                                                color: "blue",
+                                            },
+                                        ]}
+                                    >
+                                        {e.id}. {e.name}
+                                    </Text>
+                                </TouchableOpacity>
+                            );
+                        })}
+                        <Divider
+                            style={{
+                                backgroundColor: "gray",
+                                position: "relative",
+                            }}
+                        />
+                        <Text
+                            style={[
+                                styles.contentHeader,
+                                { fontSize: 24, paddingTop: 20 },
+                            ]}
+                        >
+                            อุปกรณ์อื่น ๆ
+                        </Text>
+                        {keepTool.map((e, index) => {
+
+                            return (
+                                <TouchableOpacity key={index} onPress={() => goKeepTool(e)}>
+                                    <Text
+                                        style={[
+                                            styles.textContent,
+                                            {
+                                                marginVertical: 10,
+                                                textDecorationLine: "underline",
+                                                color: "blue",
+                                            },
+                                        ]}
+                                    >
+                                        {e.id}. {e.title}
+                                    </Text>
+                                </TouchableOpacity>
+                            );
+                        })}
+                        <Divider
+                            style={{
+                                backgroundColor: "gray",
+                                position: "relative",
+                            }}
+                        />
+                        <TouchableOpacity onPress={goListName}>
+                            <Text
+                                style={[
+                                    styles.contentHeader,
+                                    {
+                                        fontSize: 24,
+                                        paddingTop: 20,
+                                        textAlign: "center",
+                                    },
+                                ]}
+                            >
+                                บริษัทที่ให้บริการเกี่ยวกับคลังสินค้า
+                            </Text>
+                            <Text
+                                style={{
+                                    fontSize: 14,
+                                    fontFamily: "kanitRegular",
+                                    textAlign: "center",
+                                    color:'grey'
+                                }}
+                            >
+                                คลิกเพื่อดูรายชื่อ
+                            </Text>
+                        </TouchableOpacity>
+                        <Divider
+                            style={{
+                                backgroundColor: "gray",
+                                position: "relative",
+                                marginTop:20
                             }}
                         />
                     </View>

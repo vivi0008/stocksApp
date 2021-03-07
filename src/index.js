@@ -3,6 +3,9 @@ import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import HomeScreen from './screens/HomeScreen'
 import RoomTypeScreen from './screens/RoomTypeScreen'
+import SafetyScreen from './screens/SafetyScreen'
+import KeepToolScreen from './screens/KeepToolScreen'
+import ListNameScreen from './screens/ListNameScreen'
 
 const navigator = createStackNavigator(
     {
@@ -14,6 +17,24 @@ const navigator = createStackNavigator(
         },
         Type:{
             screen:RoomTypeScreen,
+            navigationOptions:{
+                headerShown:false
+            }
+        },
+        Safety:{
+            screen:SafetyScreen,
+            navigationOptions:{
+                headerShown:false
+            }
+        },
+        Keep:{
+            screen:KeepToolScreen,
+            navigationOptions:{
+                headerShown:false
+            }
+        },
+        List:{
+            screen:ListNameScreen,
             navigationOptions:{
                 headerShown:false
             }

@@ -1,0 +1,34 @@
+[
+    {
+       "id":1,
+       "title":"1. คลังสินค้าสาธารณะ (Public warehouse)",
+       "detail":[
+          {
+             "id":1,
+             "title":"1.1 คลังสินค้าสำหรับสินค้าทั่วไป (General merchandise warehouse)"
+          },
+          {
+             "id":2,
+             "title":"1.2 คลังสินค้าพิเศษ (Special commodity warehouse)"
+          },
+          {
+             "id":3,
+             "title":"1.3 คลังสินค้าทัณฑ์บน (Bonded warehouse)"
+          }
+       ]
+    },
+    {
+       "id":2,
+       "title":"2. คลังสินค้าเอกชน (Private warehouse)",
+       "detail":[
+          
+       ]
+    },
+    {
+       "id":3,
+       "title":"3. คลังสินค้าเพื่อกิจกรรมพิเศษ (Special warehouse)",
+       "detail":[
+          
+       ]
+    }
+ ]
