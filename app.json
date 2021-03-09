@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "stocksApp",
+    "name": "แอพพลิเคชั่นคลังสินค้า",
     "slug": "stocksApp",
-    "version": "1.0.0",
+    "version": "1.0.5",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/sku.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/barcode.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/barcode.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.vivi0008.stocksApp",
