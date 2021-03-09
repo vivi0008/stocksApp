@@ -12,8 +12,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import styles from "../Style";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-const KeepToolScreen = ({ navigation }) => {
-    const data = navigation.state.params.data;
+const KeepToolDetails = props => {
+    const data = props.route.params.data
+    const navigation = props.navigation
 
     const doBack = () => {
         navigation.goBack();
@@ -111,4 +112,4 @@ const KeepToolScreen = ({ navigation }) => {
     );
 };
 
-export default KeepToolScreen;
+export default KeepToolDetails;

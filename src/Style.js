@@ -43,5 +43,8 @@ export default StyleSheet.create({
     },
     typeButton:{
         marginTop:2
+    },
+    videoStyle:{
+        marginTop: 10, width: WIDTH/1.2, height: HEIGHT/4, alignSelf:'center' 
     }
 })

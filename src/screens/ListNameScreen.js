@@ -15,9 +15,6 @@ import { Card, Divider } from "react-native-paper";
 import placeData from "../data/placeData.json";
 
 const ListNameScreen = ({ navigation }) => {
-    const doBack = () => {
-        navigation.goBack();
-    };
 
     const getImage = (imgName) => {
         switch (imgName) {
@@ -65,19 +62,6 @@ const ListNameScreen = ({ navigation }) => {
             style={styles.root}
         >
             <SafeAreaView style={styles.root}>
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={() => doBack()}>
-                        <AntDesign name="arrowleft" size={32} color="white" />
-                    </TouchableOpacity>
-                    <Text
-                        style={[
-                            styles.textHeader,
-                            { fontSize: 24, marginTop: 5 },
-                        ]}
-                    >
-                        รายชื่อบริษัทที่ให้บริการ
-                    </Text>
-                </View>
                 <ScrollView style={{ flex: 1 }}>
                     <View style={{ marginHorizontal: 20 }}>
                         {placeData.map((e, index) => {

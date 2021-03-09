@@ -1,51 +1,13 @@
 import React from "react";
-import {
-    View,
-    Text,
-    SafeAreaView,
-    Image,
-    TouchableOpacity,
-    Dimensions,
-} from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
 import styles from "../Style";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import safetyData from "../data/safetyData.json";
 
-const SafetyScreen = ({ navigation }) => {
-    const data = navigation.state.params.data;
-
-    const doBack = () => {
-        navigation.goBack();
-    };
-
-    const getImage = (imgName) => {
-        switch (imgName) {
-            case "shoes":
-                return require("../../assets/images/shoes.jpg");
-                break;
-            case "gloves":
-                return require("../../assets/images/gloves.jpg");
-                break;
-            case "hat":
-                return require("../../assets/images/hat.jpg");
-                break;
-            case "eyeglass":
-                return require("../../assets/images/eyeglass.jpeg");
-                break;
-            case "ears":
-                return require("../../assets/images/ears.jpg");
-                break;
-            case "mask":
-                return require("../../assets/images/mask.jpg");
-                break;
-            case "belt":
-                return require("../../assets/images/belt.jpg");
-                break;
-
-            default:
-                return require("../../assets/images/shoes.jpg");
-        }
+const RoomTypeScreen = ({ navigation }) => {
+    const goSafetyDetail = (value) => {
+        navigation.navigate("SafetyDetails", { data: value });
     };
 
     return (
@@ -55,16 +17,13 @@ const SafetyScreen = ({ navigation }) => {
         >
             <SafeAreaView style={styles.root}>
                 <View style={styles.container}>
-                    <TouchableOpacity onPress={() => doBack()}>
-                        <AntDesign name="arrowleft" size={32} color="white" />
-                    </TouchableOpacity>
                     <Text
                         style={[
                             styles.textHeader,
                             { fontSize: 24, marginTop: 5 },
                         ]}
                     >
-                        {data.name}
+                        อุปกรณ์เซฟตี้มีอะไรบ้าง ?
                     </Text>
                 </View>
                 <ScrollView style={{ flex: 1 }}>
@@ -77,16 +36,27 @@ const SafetyScreen = ({ navigation }) => {
                             },
                         ]}
                     >
-                        <Text style={styles.textContent}>
-                            {"\t"}
-                            {data.detail}
-                        </Text>
-                        <Image
-                            source={getImage(data.image)}
-                            resizeMethod="auto"
-                            resizeMode="stretch"
-                            style={styles.imgStock}
-                        />
+                        {safetyData.map((e, index) => {
+                            return (
+                                <TouchableOpacity
+                                    key={index}
+                                    onPress={() => goSafetyDetail(e)}
+                                >
+                                    <Text
+                                        style={[
+                                            styles.textContent,
+                                            {
+                                                marginVertical: 10,
+                                                textDecorationLine: "underline",
+                                                color: "blue",
+                                            },
+                                        ]}
+                                    >
+                                        {e.id}. {e.name}
+                                    </Text>
+                                </TouchableOpacity>
+                            );
+                        })}
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -94,4 +64,4 @@ const SafetyScreen = ({ navigation }) => {
     );
 };
 
-export default SafetyScreen;
+export default RoomTypeScreen;

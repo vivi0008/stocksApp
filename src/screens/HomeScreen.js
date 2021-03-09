@@ -1,38 +1,15 @@
 import React from "react";
-import {
-    View,
-    Text,
-    SafeAreaView,
-    Image,
-    TouchableOpacity,
-} from "react-native";
+import { View, Text, SafeAreaView, Image, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Divider } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import styles from "../Style";
-import typeData from "../data/typeData.json";
-import thaiData from "../data/thaiData.json";
-import safetyData from "../data/safetyData.json";
-import keepTool from "../data/keepTool.json";
+import { WebView } from "react-native-webview";
+import { Video, AVPlaybackStatus } from "expo-av";
 
 const HomeScreen = ({ navigation }) => {
-
-    const goTypeDetail = (value) => {
-        navigation.navigate("Type", { data: value });
-    };
-
-    const goSafetyDetail = (value) => {
-        navigation.navigate("Safety", { data: value });
-    };
-
-    const goKeepTool = (value) =>{
-        navigation.navigate("Keep", {data: value});
-    };
-
-    const goListName = () =>{
-        navigation.navigate("List")
-    }
-
+    const video = React.useRef(null);
+    const [status, setStatus] = React.useState({});
     return (
         <LinearGradient
             colors={["black", "#6e767e", "#ffffff"]}
@@ -40,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
         >
             <SafeAreaView style={styles.root}>
                 <View style={styles.container}>
-                    <Text style={styles.textHeader}>คลังสินค้า</Text>
+                    <Text style={styles.textHeader}>คลังสินค้าคืออะไร ?</Text>
                 </View>
                 <ScrollView style={{ flex: 1 }}>
                     <View style={styles.contentBg}>
@@ -114,184 +91,57 @@ const HomeScreen = ({ navigation }) => {
                                 { fontSize: 24, paddingTop: 20 },
                             ]}
                         >
-                            ประเภทของคลังสินค้ามีอะไรบ้าง ?
+                            สื่อการสอนเพิ่มเติม
                         </Text>
                         <Text style={styles.textContent}>
-                            {"\t"}
-                            สามารถแบ่งตามจุดมุ่งหมายในจุดประสงค์ประกอบกิจการ
-                            ได้แก่ ...
+                            1. ความหมาย
+                            ความสำคัญของคลังสินค้าและพื้นที่จัดเก็บสินค้า
                         </Text>
-                        {typeData.map((e, index) => {
-                            return (
-                                <TouchableOpacity
-                                    key={index}
-                                    style={styles.typeButton}
-                                    onPress={() => goTypeDetail(e)}
-                                >
-                                    <Text
-                                        style={[
-                                            styles.textContent,
-                                            {
-                                                textDecorationLine: "underline",
-                                                color: "blue",
-                                            },
-                                        ]}
-                                    >
-                                        {e.title}
-                                    </Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                        <Divider
-                            style={{
-                                backgroundColor: "gray",
-                                position: "relative",
+                        <WebView
+                            source={{
+                                uri:
+                                    "https://www.youtube.com/embed/oGgQR-CD2Yw",
                             }}
+                            style={styles.videoStyle}
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
                         />
-                        <Text
-                            style={[
-                                styles.contentHeader,
-                                { fontSize: 24, paddingTop: 20 },
-                            ]}
-                        >
-                            ประเภทของคลังสินค้าใน{"\n"}ประเทศไทย
-                        </Text>
                         <Text style={styles.textContent}>
-                            ประเภทของคลังสินค้า ในประเทศไทยมี 3 ประเภทได้แก่ ...
+                            2. การจำแนกประเภทคลังสินค้า
                         </Text>
-                        {thaiData.map((e, index) => {
-                            return (
-                                <View key={index}>
-                                    <Text
-                                        style={[
-                                            styles.textContent,
-                                            {
-                                                fontSize: 18,
-                                                fontWeight: "bold",
-                                                textDecorationLine: "underline",
-                                            },
-                                        ]}
-                                    >
-                                        {e.title}
-                                    </Text>
-                                    {e.detail.map((g, index) => {
-                                        return (
-                                            <Text
-                                                style={styles.textContent}
-                                                key={index}
-                                            >
-                                                {"\t"}
-                                                {g.title}
-                                            </Text>
-                                        );
-                                    })}
-                                </View>
-                            );
-                        })}
-                        <Divider
-                            style={{
-                                backgroundColor: "gray",
-                                position: "relative",
+                        <WebView
+                            source={{
+                                uri:
+                                    "https://www.youtube.com/embed/SQl9bljysa8",
                             }}
+                            style={styles.videoStyle}
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
                         />
-                        <Text
-                            style={[
-                                styles.contentHeader,
-                                { fontSize: 24, paddingTop: 20 },
-                            ]}
-                        >
-                            อุปกรณ์เซฟตี้
+                        <Text style={styles.textContent}>
+                            3. การจำแนกคลังสินค้าตามลักษณะงาน และ
+                            การจำแนกคลังสินค้าตามลักษณะสินค้า
                         </Text>
-                        {safetyData.map((e, index) => {
-                            return (
-                                <TouchableOpacity
-                                    key={index}
-                                    onPress={() => goSafetyDetail(e)}
-                                >
-                                    <Text
-                                        style={[
-                                            styles.textContent,
-                                            {
-                                                marginVertical: 10,
-                                                textDecorationLine: "underline",
-                                                color: "blue",
-                                            },
-                                        ]}
-                                    >
-                                        {e.id}. {e.name}
-                                    </Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                        <Divider
-                            style={{
-                                backgroundColor: "gray",
-                                position: "relative",
+                        <WebView
+                            source={{
+                                uri:
+                                    "https://www.youtube.com/embed/I3yTQcXC-VA",
                             }}
+                            style={styles.videoStyle}
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
                         />
-                        <Text
-                            style={[
-                                styles.contentHeader,
-                                { fontSize: 24, paddingTop: 20 },
-                            ]}
-                        >
-                            อุปกรณ์อื่น ๆ
+                        <Text style={styles.textContent}>
+                            4. กลุ่มงานพื้นฐานในคลังสินค้า
                         </Text>
-                        {keepTool.map((e, index) => {
-
-                            return (
-                                <TouchableOpacity key={index} onPress={() => goKeepTool(e)}>
-                                    <Text
-                                        style={[
-                                            styles.textContent,
-                                            {
-                                                marginVertical: 10,
-                                                textDecorationLine: "underline",
-                                                color: "blue",
-                                            },
-                                        ]}
-                                    >
-                                        {e.id}. {e.title}
-                                    </Text>
-                                </TouchableOpacity>
-                            );
-                        })}
-                        <Divider
-                            style={{
-                                backgroundColor: "gray",
-                                position: "relative",
+                        <WebView
+                            source={{
+                                uri:
+                                    "https://www.youtube.com/embed/fVwZ7BjcXCI",
                             }}
-                        />
-                        <TouchableOpacity onPress={goListName}>
-                            <Text
-                                style={[
-                                    styles.contentHeader,
-                                    {
-                                        fontSize: 24,
-                                        paddingTop: 20,
-                                        textAlign: "center",
-                                    },
-                                ]}
-                            >
-                                บริษัทที่ให้บริการเกี่ยวกับคลังสินค้า
-                            </Text>
-                            <Text
-                                style={{
-                                    fontSize: 14,
-                                    fontFamily: "kanitRegular",
-                                    textAlign: "center",
-                                    color:'grey'
-                                }}
-                            >
-                                คลิกเพื่อดูรายชื่อ
-                            </Text>
-                        </TouchableOpacity>
-                        <Divider
-                            style={{
-                                backgroundColor: "gray",
-                                position: "relative",
-                                marginTop:20
-                            }}
+                            style={styles.videoStyle}
+                            javaScriptEnabled={true}
+                            domStorageEnabled={true}
                         />
                     </View>
                 </ScrollView>

@@ -3,18 +3,17 @@ import {
     View,
     Text,
     SafeAreaView,
-    Image,
     TouchableOpacity,
-    Dimensions
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
 import styles from "../Style";
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-const RoomTypeScreen = ({navigation}) => {
+const TypeDetails = props => {
 
-    const data = navigation.state.params.data
+    const data = props.route.params.data
+    const navigation = props.navigation
 
     const doBack = () =>{
         navigation.goBack()
@@ -41,4 +40,4 @@ const RoomTypeScreen = ({navigation}) => {
     )
 }
 
-export default RoomTypeScreen
+export default TypeDetails
